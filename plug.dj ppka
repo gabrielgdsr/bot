@@ -191,9 +191,9 @@ initPopout : function(){
         var css = document.createElement('style');
         css.type = 'text/css';
             var styles = 'body {color:#66FFFF}';
-            styles+= '#current-dj-value {color:#66FFFF}';
+            styles+= '#current-dj-value {color:#B0B0B0}';
             styles+= '.chat-title {font-family: "Faster One", cursive}';
-            styles+= '#current-dj-value {color:#66FFFF}';
+            styles+= '#current-dj-value {color:#B0B0B0}';
             styles+= '#now-playing-value{color:#66FFFF}';
             styles+= '#room-score-value{color:#66FFFF}';
             styles+= '#chat {color:#00D1FF}';
@@ -209,8 +209,8 @@ initPopout : function(){
             styles+= '.chat-from-featureddj {background: url("http://i.imgur.com/tlXvCWf.png") no-repeat}';
             styles+= '.chat-from-featureddj {padding-left:17px}';
             styles+= '.chat-message .chat-from-featureddj, .chat-mention .chat-from-featureddj {color:#0084FF !important}';
-            styles+= '.chat-message .chat-from-bouncer, .chat-mention .chat-from-bouncer {color:#66CDD6 !important}';
-            styles+= '.chat-message .chat-from-manager, .chat-mention .chat-from-manager {color:#92FFFF !important}';
+            styles+= '.chat-message .chat-from-bouncer, .chat-mention .chat-from-bouncer {color:#E90E82 !important}';
+            styles+= '.chat-message .chat-from-manager, .chat-mention .chat-from-manager {color:#E90E82 !important}';
             styles+= '.chat-message .chat-from, .chat-mention .chat-from{background: url("http://i.imgur.com/bJXq2aX.png") no-repeat}';
             styles+= '.chat-message .chat-from, .chat-mention .chat-from {padding-left:17px}';
             styles+= '.chat-from-you {background: url("http://i.imgur.com/bJXq2aX.png") no-repeat}';
