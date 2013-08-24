@@ -77,8 +77,8 @@ TFLEnhancedModel = require('app/base/Class').extend({
         API.on(API.CHAT,this.proxy.onChat)
         API.on(API.CHAT_COMMAND,this.customChatCommand)
          var a = $('#chat-messages'),b = a.scrollTop() > a[0].scrollHeight - a.height() - 20;
-        a.append('<div class="chat-update"><span class="chat-text" style="color:#FF0000"><i>Bot editado por Gustavo Assis  ' + this.version.major + '.' + this.version.minor + '.' + this.version.patch + '</i></span></div>');
-        a.append('<div class="chat-update"><span style="color:#FFFF00">Curta nossa pagina  </span> : <a href="https://www.facebook.com/groups/1395653923985013/">FB</a></div>')
+        a.append('<div class="chat-update"><span class="chat-text" style="color:#9A50FF"><i>Bot editado por Gustavo Assis  ' + this.version.major + '.' + this.version.minor + '.' + this.version.patch + '</i></span></div>');
+        a.append('<div class="chat-update"><span style="color:#9A50FF">Curta nossa pagina  </span> : <a href="https://www.facebook.com/groups/1395653923985013/">FB</a></div>')
         this.removeElements();
         if (plugCubed == undefined) $.getScript("https://raw.github.com/TATDK/plugCubed/master/plugCubed.js")
 
@@ -158,8 +158,8 @@ TFLEnhancedModel = require('app/base/Class').extend({
             + '#room-score-value{color:#66FFFF;}'
             + '#chat {color:#B0B0B0;}'
             + '.chat-cohost {color:#00FF95;}'
-            + '.chat-host {color:#4CFF00;}'
-            + '.chat-emote {color:#66FFFF;}'    
+            + '.chat-host {color:#E90E82;}'
+            + '.chat-emote {color:#E90E82;}'    
             + '.chat-emote .chat-from {color:#66FFFF;}'
             + '.chat-host {background-image: url("http://i.imgur.com/FIRn1Lp.png");}'
             + '.chat-cohost {background-image: url("http://i.imgur.com/njajqVG.png");}'
@@ -183,7 +183,7 @@ TFLEnhancedModel = require('app/base/Class').extend({
             + '.chat-text a:visited {color:#22FF00;}'
             + '.chat-text a:hover {color:#EF00FF;}'
             + '.chat-text a:active {color:#66FFFF;}'
-            + '#volume-bar-value {background-image: url("http://i.imgur.com/HF5pnAR.png");}' 
+            + '#volume-bar-value {background-image: url("http://i.imgur.com/Haiuwou.jpg");}' 
         + '</style>');
 },
 initPopout : function(){
