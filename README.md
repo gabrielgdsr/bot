@@ -17,13 +17,7 @@ function onChat(data) {
 		}
 		if (message.indexOf('!skip') == 0) API.moderateForceSkip();
 		if (message.indexOf('!ping') == 0) API.sendChat('Pong!');
-		if (message.indexOf('!regras') == 0) {1)Tempo máximo 5 minutos e 30 segundos;
-2)Não escrever em /me ou /em (mensagem amarela);
-3)Respeitar os moderadores da sala;
-4)Sem Flood no chat;
-5)Não fique pedindo cargos.
-
-Temas permitidos: Electro , Dubstep , Techno , Trap e derivados. 
+		if (message.indexOf('!regras') == 0) { 
 			API.sendChat('bot shutting down.');
 			API.off(API.CHAT,onChat);
 			API.off(API.DJ_ADVANCE,onDjAdv);
