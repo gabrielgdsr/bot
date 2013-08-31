@@ -17,7 +17,7 @@ function onChat(data) {
 		}
 		if (message.indexOf('!skip') == 0) API.moderateForceSkip();
 		if (message.indexOf('!ping') == 0) API.sendChat('Pong!');
-		if (message.indexOf('!regras') == 0) { -'
+		if (message.indexOf('!kill') == 0) {
 			API.sendChat('bot shutting down.');
 			API.off(API.CHAT,onChat);
 			API.off(API.DJ_ADVANCE,onDjAdv);
