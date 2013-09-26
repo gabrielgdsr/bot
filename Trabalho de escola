@@ -78,7 +78,7 @@ TFLEnhancedModel = require('app/base/Class').extend({
         API.on(API.CHAT_COMMAND,this.customChatCommand)
          var a = $('#chat-messages'),b = a.scrollTop() > a[0].scrollHeight - a.height() - 20;
         a.append('<div class="chat-update"><span class="chat-text" style="color:#9A50FF"><i>Bot editado por Gustavo Assis  ' + this.version.major + '.' + this.version.minor + '.' + this.version.patch + '</i></span></div>');
-        a.append('<div class="chat-update"><span style="color:#9A50FF">Curta nossa pagina  </span> : <a href="https://www.facebook.com/groups/1395653923985013/">FB</a></div>')
+        a.append('<div class="chat-update"><span style="color:#9A50FF">Entre em nosso grupo </span> : <a href="https://www.facebook.com/groups/1395653923985013/">FB</a></div>')
         this.removeElements();
         if (plugCubed == undefined) $.getScript("https://raw.github.com/TATDK/plugCubed/master/plugCubed.js")
 
