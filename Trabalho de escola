@@ -197,9 +197,9 @@ initPopout : function(){
             styles+= '#now-playing-value{color:#66FFFF}';
             styles+= '#room-score-value{color:#66FFFF}';
             styles+= '#chat {color:#00D1FF}';
-            styles+= '.chat-cohost {color:#00F5FF}';
-            styles+= '.chat-host {color:#48D1CC}';
-            styles+= '.chat-emote {color:#FCFF00}';    
+            styles+= '.chat-cohost {color:B5B5B5}';
+            styles+= '.chat-host {color:B5B5B5}';
+            styles+= '.chat-emote {color:B5B5B5}';    
             styles+= '.chat-emote .chat-from {color:#FCFF00}';
             styles+= '.chat-emote .chat-text, .chat-system .chat-text {color:FCFF00}';
             styles+= '.chat-host {background-image: url("http://i.imgur.com/FIRn1Lp.png")}';
@@ -215,7 +215,7 @@ initPopout : function(){
             styles+= '.chat-message .chat-from, .chat-mention .chat-from {padding-left:17px}';
             styles+= '.chat-from-you {background: url("http://i.imgur.com/bJXq2aX.png") no-repeat}';
             styles+= '.chat-from-you {padding-left:17px}';
-            styles+= '.chat-manager {color:#FFFF00}';
+            styles+= '.chat-manager {color:#B5B5B5}';
             styles+= '.chat-message .chat-from-host, .chat-mention .chat-from-host {color:#FF00FF !important}';
             styles+= '.chat-message .chat-from-cohost, .chat-mention .chat-from-cohost {color:#FF00FF !important}';
             styles+= '.chat-moderation .chat-from {color:#00FF22}';
