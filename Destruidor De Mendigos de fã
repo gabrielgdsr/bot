@@ -51,7 +51,7 @@ var autoModeratorModel = require('app/base/Class').extend({
                 API.on(API.CHAT,          this.proxy.chat);
                 API.on(API.CHAT_COMMAND,  this.proxy.chatCommand);
                 console.log('Antitroll ' + this.version + ' Ativo!')
-                API.sendChat('/em , ' + this.version + '. Destruidor de fã Ligado!')
+                API.sendChat('/em , ' + this.version + '. Destruidor de fan Ligado!')
         },
         close: function() {
                 API.off(API.CHAT,          this.proxy.onChat);
