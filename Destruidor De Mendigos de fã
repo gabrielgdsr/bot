@@ -41,7 +41,8 @@ var autoModeratorModel = require('app/base/Class').extend({
                          'Automatic fan when you fan me!',
                          'Auto Fan'
                          
-        ],
+                         
+                                 ],
         mutedUsers: [],
         init: function() {
                 this.proxy = {
