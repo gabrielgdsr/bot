@@ -40,6 +40,7 @@ var autoModeratorModel = require('app/base/Class').extend({
                          'Fan 4 Fan automatic, just fan me!',
                          'Automatic fan when you fan me!',
                          'Auto Fan'
+                         'FAN 4 FAN / FREE FANS',
  
         ],
         mutedUsers: [],
