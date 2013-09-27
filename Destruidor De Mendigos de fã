@@ -40,9 +40,8 @@ var autoModeratorModel = require('app/base/Class').extend({
                          'Fan 4 Fan automatic, just fan me!',
                          'Automatic fan when you fan me!',
                          'Auto Fan'
-                         
-                         
-                                 ],
+ 
+        ],
         mutedUsers: [],
         init: function() {
                 this.proxy = {
@@ -52,7 +51,7 @@ var autoModeratorModel = require('app/base/Class').extend({
                 API.on(API.CHAT,          this.proxy.chat);
                 API.on(API.CHAT_COMMAND,  this.proxy.chatCommand);
                 console.log('Antitroll ' + this.version + ' Ativo!')
-                API.sendChat('/em , ' + this.version + ' Destruidor de fan on , cora para as colinas , se proteja :exclamation: ')
+                API.sendChat('/em , ' + this.version + '. Destruidor de fan on , cora para as colinas , pegue as armas e se proteja como puder :grey_exclamation: !')
         },
         close: function() {
                 API.off(API.CHAT,          this.proxy.onChat);
