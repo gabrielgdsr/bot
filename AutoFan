@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
 //When script loads
-API.sendChat("Fan for fan . Quem virar meu fan, viro imediatamente seu fan!")
+API.sendChat("Medigador de fan on !")
 $('#button-vote-positive').click();
 
 //global var
@@ -33,7 +33,7 @@ var intervalMessage = setInterval(function(){message();},240000);
 
 function message(){
 var m, msgs;
-msgs = ["Fan 4 fan ?", "Free fans here! Just fan me", "Turns my fan, i turns you fan back !", "Fan 4 Fan automatic, just fan me!", "Quem virar meu fan viro de volta!"];
+msgs = ["Fan 4 fan ?", "Vira meu fan que viro o seu automaticamente!", "Retribuo fan :v: ", "Fan 4 Fan :v:", "Quem virar meu fan viro de volta :metal:"];
 
 m = Math.floor(Math.random() * msgs.length);
 API.sendChat(msgs[m]);		  
