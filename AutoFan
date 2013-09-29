@@ -33,7 +33,7 @@ var intervalMessage = setInterval(function(){message();},240000);
 
 function message(){
 var m, msgs;
-msgs = ["Fan 4 fan ?", "Vira meu fan que viro o seu automaticamente!", "Retribuo fan :v: ", "Fan 4 Fan :v:", "Quem virar meu fan viro de volta :metal:"];
+msgs = ["Fan 4 fan ?", "Vira meu fan que viro o seu automaticamente!", "Retribuo fan! ", "Fan 4 Fan ! :))", "Quem virar meu fan viro de volta1"];
 
 m = Math.floor(Math.random() * msgs.length);
 API.sendChat(msgs[m]);		  
