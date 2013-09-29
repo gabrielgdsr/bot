@@ -121,12 +121,12 @@ var fansMsg = ["Troco fãs mais não se esqueça do @ menção  :)."];
 var wafflesMsg = ["Entrem no nosso grupo no facebook, lá voce ficará por dentro de tudo que rola no Plug.Dj : https://www.facebook.com/groups/DTEplugdj/ "];
 var bhvMsg = ["Não venha com macacada aqui, porfavor!"];
 var sleepMsg = ["Saindo vlw flw 2BJ :)"];
-var workMsg = ["To ocupado agora kct não me pertuba! (AutoMSG) "];
-var afkMsg = ["To no Redube agora , volto mais tarde!"];
-var backMsg = ["To de volta negada :)"];
+var workMsg = ["Estou ocupado no momento volto mais tarde !) "];
+var afkMsg = ["Estou ocupado no momento , se for algo importante mencione-me!"];
+var backMsg = ["To de volta  :)"];
 
-var autoAwayMsg = ["To ocupado vlw flw (AUSENTE)"];
-var autoSlpMsg = ["Masturbando  no momento ..."];
+var autoAwayMsg = ["Ocpado no momento (AUSENTE)"];
+var autoSlpMsg = ["AFK Volto mais tarde ..."];
 var autoWrkMsg = ["Nao pude te responder agora, na volta irei responder."];
 
 var styles = [
