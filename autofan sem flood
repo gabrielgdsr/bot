@@ -33,7 +33,7 @@ var intervalMessage = setInterval(function(){message();},240000);
 
 function message(){
 var m, msgs;
-msgs = ["Fan 4 fan ?", "!", "! ", "Fan 4 Fan ! :))", ""];
+msgs = ["Fan 4 fan ?", " ", " ", "Fan 4 Fan ! :))", ""];
 
 m = Math.floor(Math.random() * msgs.length);
 API.sendChat(msgs[m]);		  
