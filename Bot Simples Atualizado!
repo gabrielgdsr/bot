@@ -1,0 +1,606 @@
+////////////////////////////////////
+//                                //
+// Kodi Wolfe Plug.DJ Auto Plugin //
+//          07/24/2013            //
+//                                //
+//  Please do not distribute this //
+//      code or duplicate it      //
+//                                //
+////////////////////////////////////
+
+
+// API Listeners
+API.chatLog("Plugin.DJ Ver 1.1.0 Beta", true);
+$('body').append('<div id="plugindj-userlist"></div>');
+
+var settings = {
+    autojoin : false,
+    block : true,
+    debug : false,
+    autoWoot : true,
+    userList : true,
+    hideVideo : false,
+    stream : true,
+    animation : true,
+    menu : true,
+
+    lastVolume : API.getVolume(),
+    fanDelay : 2, // Time in minutes
+    blockList : new Array()
+};
+
+if (localStorage.getItem('pluginDj') === null) {
+    saveSettings();
+} else {
+    loadSettings();
+}
+
+intiAPIListener();
+initStyles();
+intiUserList();
+initMenu();
+
+function loadSettings() {
+    var save = JSON.parse(localStorage.getItem('pluginDj'));
+    for (var i in this.settings) {
+        if (save[i] !== undefined) this.settings[i] = save[i];
+    }
+}
+
+function saveSettings() {
+    localStorage.setItem('pluginDj', JSON.stringify(this.settings));
+}
+
+function intiAPIListener() {
+    if (settings.debug) { console.log("intiAPIListener Called"); }
+
+    API.on(API.CHAT_COMMAND, this.funcChatCommand);
+    API.on(API.DJ_ADVANCE, this.funcDjAdvance);
+    API.on(API.VOTE_UPDATE, this.funcVoteUpdate);
+    API.on(API.CURATE_UPDATE, this.funcCurate);
+    API.on(API.USER_JOIN, this.funcUserJoin);
+    API.on(API.USER_LEAVE, this.funcUserLeave);
+    API.on(API.CHAT, this.funcChat);
+    API.on(API.VOTE_SKIP, this.funcSkip);
+    API.on(API.USER_SKIP, this.funcSkip);
+    API.on(API.MOD_SKIP, this.funcSkip);
+    API.on(API.WAIT_LIST_UPDATE, this.funcUserlistUpdate);
+}
+
+function funcChatCommand(value) {
+    if (value.indexOf("/cmd") === 0) {
+        appendChat("<center><strong>User Commands</strong></center><br>" +
+            "<strong>'/cmd'</strong> - <em>displays list of Plugin.Dj cmds</em><br>" +
+            "<strong>'/avail'</strong> - <em>set status available</em><br>" +
+            "<strong>'/away'</strong> - <em>set status away</em><br>" +
+            "<strong>'/work'</strong> - <em>set status working</em><br>" +
+            "<strong>'/sleep'</strong> - <em>set status sleeping</em><br>" +
+            "<strong>'/join'</strong> - <em>join the dj booth</em><br>" +
+            "<strong>'/leave'</strong> - <em>leave the dj booth</em><br>" +
+            "<strong>'/woot'</strong> - <em>woot the current song playing</em><br>" +
+            "<strong>'/boo'</strong> - <em>meh the current song playing</em><br>" +
+            "<strong>'/ref'</strong> - <em>refresh the video/soundcloud</em><br>" +
+            "<strong>'/mute'</strong> - <em>mutes volume</em><br>" +
+            "<strong>'/unmute'</strong> - <em>restores your volume from mute</em><br>" +
+            "<strong>'/history'</strong> - <em>checks if current song is in queue</em><br>" +
+            "<strong>'/nub'</strong> - <em>refreshes your page</em><br>" +
+            "<strong>'/blocklist'</strong> - <em>displays all blocked users</em><br>" +
+            "<strong>'/block @mention'</strong> - <em>addes user to your chat filter list</em><br>" +
+            "<strong>'/unblock @mention'</strong> - <em>removes user to your chat filter list</em><br>"
+            , "#ffffff");
+        return true;
+    }
+
+    if (value.indexOf("/motes") === 0) {
+        appendChat("<center><strong>Emotes Commands</strong></center><br>" +
+            "<center><strong>All emotes can be used alone or with @mentions</strong></center><br>" +
+            "<strong>'/agree'</strong><br>" +
+            "<strong>'/hug'</strong><br>" +
+            "<strong>'/cupcake'</strong><br>" +
+            "<strong>'/lick'</strong><br>" +
+            "<strong>'/brohoof'</strong><br>" +
+            "<strong>'/sandwich'</strong><br>" +
+            "<strong>'/fans'</strong><br>" +
+            "<strong>'/disagree'</strong><br>" +
+            "<strong>'/yay'</strong><br>" +
+            "<strong>'/cry'</strong><br>" +
+            "<strong>'/eyeroll'</strong><br>" 
+            , "#ffffff");
+        return true;
+    }
+
+    if (value.indexOf("/avail") === 0 || value.indexOf("/available") === 0) {
+        API.setStatus(API.STATUS.AVAILABLE);
+        API.chatLog('Your current status is available');
+        return true;
+    }
+    if (value.indexOf("/afk") === 0 || value.indexOf("/away") === 0) {
+        API.setStatus(API.STATUS.AFK);
+        API.chatLog('Your current status is away');
+        return true;
+    }
+    if (value.indexOf("/work") === 0 || value.indexOf("/working") === 0) {
+        API.setStatus(API.STATUS.WORKING);
+        API.chatLog('Your current status is working');
+        return true;
+    }
+    if (value.indexOf("/sleep") === 0 || value.indexOf("/sleeping") === 0) {
+        API.setStatus(API.STATUS.SLEEPING);
+        API.chatLog('Your current status is sleeping');
+        return true;
+    }
+    if (value.indexOf("/join") === 0) {
+        API.djJoin();
+        intiUserList();
+        API.chatLog('Your current queued in the DJ booth');
+        return true;
+    }
+    if (value.indexOf("/leave") === 0) {
+        API.djLeave();
+        intiUserList();
+        API.chatLog('You have left the DJ booth');
+        return true;
+    }
+    if (value.indexOf("/boo") === 0) {
+        mehSong();
+        return true;
+    }
+    if (value.indexOf("/woot") === 0) {
+        wootSong();
+        return true;
+    }
+    if (value.indexOf("/mute") === 0) {
+        API.chatLog('Your volume is currently muted');
+        settings.lastVolume = API.getVolume();
+        API.setVolume(0);
+        saveSettings()
+        return true;
+    }
+    if (value.indexOf("/unmute") === 0) {
+        API.chatLog('Your volume is currently unmuted');
+        API.setVolume(settings.lastVolume);
+        saveSettings()
+        return true;
+    }
+    if (value.indexOf("/ref") === 0 || value.indexOf("/refresh") === 0) {
+        $('#button-refresh').click();
+        return true;
+    }
+    if (value.indexOf("/nub") === 0) {
+        location.reload();
+        return true;
+    }
+    if (value.indexOf("/history") === 0) {
+        var a = API.getNextMedia();
+        if (a === undefined) {
+            API.chatLog('You current dont have a song in your queue');
+        }
+        var roomHistory = API.getHistory();
+        for (var history in API.getHistory()) {
+            if (a.media.id === roomHistory[history].media.id) {
+                API.chatLog('You current queued song is in history');
+                return true
+            } 
+        }
+        API.chatLog('You current queued song is not in history');
+        return true;
+    }
+    if (/^\/block @(.*)$/.exec(value)) {
+        username = (RegExp.$1).trim();
+        blockUser(username);
+        return true;
+    }
+    if (value.indexOf("/blocklist") === 0) {
+        listBlockUsers();
+        return true;
+    }
+    if (/^\/unblock @(.*)$/.exec(value)) {
+        username = (RegExp.$1).trim();
+        unblockUser(username);
+        return true;
+    }
+    funcEmoteCommands(value)
+    
+}
+
+function funcEmoteCommands(value) {
+    if (/^\/agree @(.*)$/.exec(value) || value.indexOf("/agree") === 0) {
+        username = (RegExp.$1).trim();
+        if (username.length > 1) {
+            API.sendChat('/me agrees with @'+username);
+        } else {
+            API.sendChat('/me agrees');
+        }
+        return true;
+    }
+
+    if (/^\/cupcake @(.*)$/.exec(value) || value.indexOf("/cupcake") === 0) {
+        username = (RegExp.$1).trim();
+        if (username.length > 1) {
+            API.sendChat('/me gives @' + username+' a cupcake');
+        } else {
+            API.sendChat('/me cupcakes all around');
+        }
+        return true;
+    }
+
+    if (/^\/hug @(.*)$/.exec(value) || value.indexOf("/hug") === 0) {
+        username = (RegExp.$1).trim();
+        if (username.length > 1) {
+            API.sendChat('/me gives @' + username+' a huge');
+        } else {
+            API.sendChat('/me hugs everyone');
+        }
+        return true;
+    }
+
+    if (/^\/lick @(.*)$/.exec(value) || value.indexOf("/lick") === 0) {
+        username = (RegExp.$1).trim();
+        if (username.length > 1) {
+            API.sendChat('/me gives @' + username + ' a big wet lick to the face');
+        } else {
+            API.sendChat('/me licks everyone across the face');
+        }
+        return true;
+    }
+
+    if (/^\/brohoof @(.*)$/.exec(value) || value.indexOf("/brohoof") === 0) {
+        username = (RegExp.$1).trim();
+        if (username.length > 1) {
+            API.sendChat('/me /) @' + username);
+        } else {
+            API.sendChat('/me /)*');
+        }
+        return true;
+    }
+
+    if (/^\/sandwich @(.*)$/.exec(value) || value.indexOf("/sandwich") === 0) {
+        username = (RegExp.$1).trim();
+        if (username.length > 1) {
+            API.sendChat('/me makes a sandwich for @' + username);
+        } else {
+            API.sendChat('/me makes everyone a sandwich');
+        }
+        return true;
+    }
+
+    if (/^\/fans @(.*)$/.exec(value) || value.indexOf("/fans") === 0) {
+        API.sendChat('Check out all these fans http://bit.ly/1dYWz0E');
+        return true;
+    }
+
+    if (/^\/disagree @(.*)$/.exec(value) || value.indexOf("/disagree") === 0) {
+        username = (RegExp.$1).trim();
+        if (username.length > 1) {
+            API.sendChat('/me does not approve with @' + username);
+        } else {
+            API.sendChat('/me does not approve');
+        }
+        return true;
+    }
+
+    if (/^\/yay @(.*)$/.exec(value) || value.indexOf("/yay") === 0) {
+        API.sendChat('/me (\/(^.^)/)');
+        return true;
+    }
+
+    if (/^\/cry @(.*)$/.exec(value) || value.indexOf("/cry") === 0) {
+        username = (RegExp.$1).trim();
+        if (username.length > 1) {
+            API.sendChat('/me crys in @' + username+"'s arms");
+        } else {
+            API.sendChat('/me (T_T)');
+        }
+        return true;
+    }
+
+    if (/^\/eyeroll @(.*)$/.exec(value) || value.indexOf("/eyeroll") === 0) {
+        username = (RegExp.$1).trim();
+        if (username.length > 1) {
+            API.sendChat('/me rolls eyes at @' + username);
+        } else {
+            API.sendChat('/me ◔̯◔');
+        }
+        return true;
+    }
+}
+
+function blockUser(username) {
+    var userList = API.getUsers();
+    var userID = "";
+    for (var blockNum in userList) {
+        if (userList[blockNum].username === username) {
+            userID = userList[blockNum].id;
+            var check = false;
+            for (var blockCheckNum in settings.blockList) {
+                if (settings.blockList[blockCheckNum].id === userID) {
+                    settings.blockList[blockCheckNum] == userList[blockNum]
+                    API.chatLog(username + " is currently in your block list, your records have been updated")
+                    saveSettings()
+                    return true;
+                }
+            }
+            if (userID.length != 0) {
+                settings.blockList.push(userList[blockNum]);
+                API.chatLog(username + "'s chat is currently block from your view.")
+                saveSettings()
+                return true;
+            }
+        }
+    }
+    API.chatLog("The user " + username + " is not currently in the channel.")
+    saveSettings()
+}
+
+function unblockUser(username) {
+
+    for (var blockCheckNum in settings.blockList) {
+        if (settings.blockList[blockCheckNum].username === username) {
+            settings.blockList.splice(blockCheckNum, 1)
+            API.chatLog(username + " is removed from your block list")
+            saveSettings()
+            return true;
+        }
+    }
+    API.chatLog("The user " + username + " was not found in your block list.")
+    saveSettings()
+}
+
+function listBlockUsers() {
+    var blockedChatList = "";
+
+    for (var listNum in settings.blockList) {
+        blockedChatList += '<strong>' + settings.blockList[listNum].username + '</strong><br>';
+    }
+    appendChat("<center><strong>Blocked Users</strong></center><br>" + blockedChatList, "#ffffff");
+    
+}
+
+function funcDjAdvance(data) {
+    intiUserList();
+    if (settings.debug) { console.log("funcDjAdvance Called"); }
+
+    if (settings.autoWoot) { wootSong(); }
+
+    if (settings.autojoin && $('#button-dj-waitlist-join').length > 0) {
+        if (settings.debug) { console.log("Auto Join Called"); }
+        API.djJoin();
+    }
+}
+
+function wootSong() {
+    if (settings.debug) { console.log("Song Woot Called"); }
+    $('#button-vote-positive').click();
+}
+
+function mehSong() {
+    if (settings.debug) { console.log("Song Meh Called"); }
+    $('#button-vote-negative').click();
+}
+
+function funcVoteUpdate(data) {
+    intiUserList();
+}
+
+function funcCurate(data) {
+
+}
+
+function funcUserJoin(data) {
+    intiUserList();
+}
+
+function funcUserLeave(data) {
+    intiUserList();
+}
+
+function funcChat(data) {
+    funcCheckUserBlocked(data);
+    if (settings.block) {
+        $('[class*=chat-hidden-]').hide();
+    } else {
+        $('[class*=chat-hidden-]').show();
+    }
+
+}
+
+function funcCheckUserBlocked(data) {
+    for (var user in settings.blockList) {
+        if (settings.blockList[user].id === data.fromID) {
+            $('.chat-id-' + data.chatID).addClass("chat-hidden-" + data.fromID);
+        }
+    }
+}
+
+function funcSkip(data) {
+    intiUserList();
+}
+
+function funcUserlistUpdate(data) {
+    intiUserList();
+}
+
+function appendChat(message, color) {
+    var a = $('#chat-messages'), b = a.scrollTop() > a[0].scrollHeight - a.height() - 20;
+    a.append('<div class="chat-update"><span class="chat-text" style="color:#' + color + '">' + message + '</span></div>');
+}
+
+function initStyles() {
+    $('body').prepend('<style type="text/css" id="plugindj-css">'
+        + '#plugindj-ui { position: absolute; left: 325.9px; top: -601.78px;}'
+        + '#plugindj-ui p { border-style: solid; border-width: 1px; border-color: #000; background-color: rgba(10, 10, 10, 0.5); height: 28px; padding-top: 13%; padding-left: 8%; padding-right: 8%; cursor: pointer; font-variant: small-caps; width: 72px; font-size: 13px; margin: 2.5%; }'
+        + '#plugindj-ui p:hover { background-color:rgba(39, 39, 39, 0.5) }'
+        + '#plugindj-ui h2 { border-style: solid; border-width:  1px; border-color: #000 ; height: 9000px; width: 156px; margin: 2.5%; color: #fff; font-size: 12px; font-variant: small-caps; padding: 8px 0 0 13px; }'
+        + '#plugindj-userlist {min-width: 8.4%; max-height: 98.6%; overflow-x: hidden; overflow-y: auto; position: fixed; z-index: 99; border-style: solid; border-width: 1px; border-color: #000; background-color: rgba(10, 10, 10, 0.5); border-left: 0 !important; padding: 0px 0px 12px 0px; }'
+        + '#plugindj-userlist p {padding-right: 15px; margin: 0; padding-top: 4px; text-indent: 24px; font-size: 86%; color: #C3C3C3; }'
+        + '#plugindj-userlist p:first-child { padding-top: 0px !important; }'
+        + '#plugindj-queuespot { color: #58FAF4; text-align: left; font-size: 15px; margin-left: 8px }');
+}
+
+function initMenu() {
+    $('#user-container').prepend('<div id="plugindj-ui"></div>');
+    $('#plugindj-ui').append(
+        '<p id="plugindj-menu-settings" style="color:#58FAF4; ">Plugin.DJ</p>' +
+            '<div style="width: 100%; visibility:' + (settings.menu ? "visible" : "hidden") + ';">' +
+            '<p id="plugindj-btn-autowoot" style="color:' + (settings.autoWoot ? "#3FFF00" : "#ED1C24") + '">AutoWoot</p>' +
+            '<p id="plugindj-btn-queue" style="color:' + (settings.autojoin ? "#3FFF00" : "#ED1C24") + '">AutoJoin</p>' +
+            '<p id="plugindj-btn-block" style="color:' + (settings.block ? "#3FFF00" : "#ED1C24") + '">Block</p>' +
+            '<p id="plugindj-btn-userlist" style="color:' + (settings.userList ? "#3FFF00" : "#ED1C24") + '">Userlist</p>' +
+            '<p id="plugindj-btn-hidevideo" style="color:' + (settings.hideVideo ? "#3FFF00" : "#ED1C24") + '">Hide Video</p>' +
+            '<p id="plugindj-btn-stream" style="color:' + (settings.stream ? "#3FFF00" : "#ED1C24") + '">Stream</p>' +
+            '</div>'
+    );
+}
+
+$("#plugindj-menu-settings").on("click", function () {
+    settings.menu = !settings.menu;
+    $("[id^=plugindj-btn]").css("visibility", settings.menu ? ("visible") : ("hidden"));
+    saveSettings()
+});
+
+$("#plugindj-btn-userlist").on("click", function () {
+    settings.userList = !settings.userList;
+    $(this).css("color", settings.userList ? "#3FFF00" : "#ED1C24");
+    $("#plugindj-userlist").css("visibility", settings.userList ? ("visible") : ("hidden"));
+    $("#plugindj-userlist").css("overflow", settings.userList ? ("auto") : ("hidden"));
+    if (!settings.userList)
+        $("#plugindj-userlist").empty();
+    else
+        intiUserList();
+    saveSettings()
+});
+
+$("#plugindj-btn-autowoot").on("click", function () {
+    settings.autoWoot = !settings.autoWoot;
+    $(this).css("color", settings.autoWoot ? "#3FFF00" : "#ED1C24");
+    if (settings.autoWoot) $("#button-vote-positive").click();
+    saveSettings()
+});
+
+$("#plugindj-btn-block").on("click", function () {
+    settings.block = !settings.block;
+    $(this).css("color", settings.block ? "#3FFF00" : "#ED1C24");
+    if (settings.block) $('[class*=chat-hidden-]').hide();
+    else $('[class*=chat-hidden-]').show();
+    saveSettings()
+});
+
+$("#plugindj-btn-hidevideo").on("click", function () {
+    settings.hideVideo = !settings.hideVideo;
+    $(this).css("color", settings.hideVideo ? "#3FFF00" : "#ED1C24");
+    $("#yt-frame").animate({ "height": (settings.hideVideo ? "0px" : "271px") }, { duration: "fast" });
+    saveSettings()
+});
+
+$("#plugindj-btn-queue").on("click", function () {
+    settings.autojoin = !settings.autojoin;
+    $(this).css("color", settings.autojoin ? "#3FFF00" : "#ED1C24");
+    $("#button-dj-waitlist-" + (settings.autojoin ? "join" : "leave")).click();
+    saveSettings()
+});
+
+$("#plugindj-btn-stream").on("click", function () {
+    settings.stream = !settings.stream;
+    $(this).css("color", settings.stream ? "#3FFF00" : "#ED1C24");
+    if (!settings.stream) {
+        API.sendChat("/stream off");
+    } else {
+        API.sendChat("/stream on");
+    }
+    saveSettings()
+});
+
+function intiUserList() {
+    $('#plugindj-userlist').html(' ');
+    if (!settings.userList) {
+        return true;
+    }
+    var waitlistText = "";
+    if (API.getWaitListPosition() != -1) {
+        waitlistText = " / " + API.getWaitListPosition();
+    }
+    $('#plugindj-userlist').append('<h1 style="text-indent:12px;color:#58FAF4;font-size:14px;font-variant:small-caps;">Users: ' + API.getUsers().length + '</h1>' +
+        '<h1 style="text-indent:12px;color:#58FAF4;font-size:14px;font-variant:small-caps;">Waitlist: ' + API.getWaitList().length + waitlistText);
+    var users = new Array();
+    for (user in API.getUsers()) {
+        users.push(API.getUsers()[user]);
+    }
+    for (user in users) {
+        var user = users[user];
+        appendUser(user);
+    }
+}
+
+function appendUser(user) {
+    var username = user.username.replace(/</g, '&lt;');;
+    var permission = user.permission;
+    if (user.admin) {
+        permission = 99;
+    }
+    var imagePrefix;
+    switch (permission) {
+        case 0:        // Normal user
+            imagePrefix = 'normal'
+            break;
+        case 1:        // Featured DJ
+            imagePrefix = 'featured';
+            break;
+        case 2:        // Bouncer
+            imagePrefix = 'bouncer';
+            break;
+        case 3:    	// Manager
+            imagePrefix = 'manager';
+            break;
+        case 4:
+        case 5: 	// Co-host
+            imagePrefix = 'host';
+            break;
+        case 99:	// Admin
+            imagePrefix = 'admin';
+            break;
+    }
+    if (API.getDJs()[0].username == username) {
+        if (imagePrefix === 'normal') {
+            drawUserlistItem('void', '#42A5DC', username);
+        } else {
+            drawUserlistItem(imagePrefix + '_current.png', '#42A5DC', username);
+        }
+    } else if (imagePrefix === 'normal') {
+        drawUserlistItem('void', colorByVote(user.vote), username);
+    } else {
+        drawUserlistItem(imagePrefix + imagePrefixByVote(user.vote), colorByVote(user.vote), username);
+    }
+}
+function colorByVote(vote) {
+    if (!vote) {
+        return '#DDDDDD'; // blame Boycey
+    }
+    switch (vote) {
+        case -1: return '#F43636';
+        case 0: return '#DDDDDD';
+        case 1: return '#95F436';
+    }
+}
+function imagePrefixByVote(vote) {
+    if (!vote) {
+        return '_undecided.png'; // blame boycey again
+    }
+    switch (vote) {
+        case -1: return '_meh.png';
+        case 0: return '_undecided.png';
+        case 1: return '_woot.png';
+    }
+}
+
+function drawUserlistItem(imagePath, color, username) {
+    if (imagePath !== 'void') {
+        var realPath = 'http://www.theedmbasement.com/basebot/userlist/' + imagePath;
+        $('#plugindj-userlist').append('<img src="' + realPath + '" align="left" style="margin-left:6px; position: absolute; margin-top: .3%;" />');
+    }
+    $('#plugindj-userlist').append(
+        '<p style="cursor:pointer;' + (imagePath === 'void' ? '' : 'text-indent:24px !important;')
+            + 'color:' + color + ';'
+            + ((API.getDJs()[0].username == username) ? 'font-size:12px;font-weight:bold;' : '')
+            + '" onclick="$(\'#chat-input-field\').val($(\'#chat-input-field\').val() + \'@' + username + ' \').focus();">' + username + '</p>'
+    );
+}
