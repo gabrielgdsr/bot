@@ -157,7 +157,7 @@ TFLEnhancedModel = require('app/base/Class').extend({
         }
     },
     initCSS: function() {
-        $('#room-wheel').css('background','url(" ")');
+        $('#room-wheel').css('background','url("http://i.imgur.com/Zz8V7wd.png")');
         $('#room-wheel').css('background-repeat','no-repeat');
         $('#room-wheel').css('background-position','550px 275px');
         $('#meta-frame .frame-background').hide('.frame-background');
