@@ -753,7 +753,7 @@
       msg1 += "2) Não escrever em /me ou /em.  ";
       msg1 += "3) Respeitar os moderadores da sala.";
       msg1 += "4) Sem flood no chat . ";
-      msg1 += "5) Não fique pedindo cargos. ";
+      msg1 += "5) Proibido usar FanBot na sala ";
       msg2 = "1) Maximum time 6 minutes and 30 seconds. ";
       msg2 += "2) Can't write in /me or /em. ";
       msg2 += "3) Respect the moderators of the room. ";
@@ -786,7 +786,7 @@
     roomHelpCommand.prototype.functionality = function() {
       var msg1, msg2;
 
-      msg1 = "Bem vindo a sala Team Brasil | TBR! Ser DJ: Crie uma lista de reprodução e coloque Musica do Youtube ou soundcloud. ";
+      msg1 = "Bem vindo a sala Electro, Trap & Dubstep Brasil ! ETD , Ser DJ: Crie uma lista de reprodução e coloque Musica do Youtube ou soundcloud. ";
       msg1 += "Se é novo procure pelo seu nome na sua tela (próximo a cabine do DJ) e depois mude o nome. ";
       msg1 += "Para Ganhar Pontos clique em Bacana. ";
       msg2 = "Divirta-se! Qualquer outra duvida chame um adm da sala ";
@@ -816,7 +816,7 @@
 
     sourceCommand.prototype.functionality = function() {
       var msg;
-      msg = ' BOT criado por Backus e editado por NoName para a sala Team Brasil | TBR ';
+      msg = ' BOT criado por !Special Agent Infinit para a sala Electro, Trap & Dubstep Brasil | ETD ';
       return API.sendChat(msg);
     };
 
@@ -932,7 +932,7 @@
         }
       }
       if (msg === '') {
-        return API.sendChat("Ninguem está AFK!");
+        return API.sendChat("Ninguem está AFK VLW FLW 2BJ!");
       } else {
         return API.sendChat('AFKs: ' + msg);
       }
