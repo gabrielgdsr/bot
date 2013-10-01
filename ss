@@ -1,5 +1,3 @@
-$(document).ready(function(){
-
 // Internationalization strings
 dateFormat.i18n = {
     dayNames: [
@@ -161,7 +159,6 @@ define('plugEssential/Model', ['app/base/Class', 'plugEssential/Config', 'app/ut
                 this.skipButton.click(function() {
                     API.moderateForceSkip();
                 });
-
 
 
 });
