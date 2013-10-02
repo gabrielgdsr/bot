@@ -29,10 +29,10 @@ function onDjAdv(obj) {
 	setTimeout(function(){document.getElementById("button-vote-positive").click();},1500);
 	var songStr = song;
 	var woots = obj.lastPlay.score.positive, mehs = obj.lastPlay.score.negative, curates = obj.lastPlay.score.curates ;
-	if (woots === 1) var ww = ' woot //  '; else var ww = ' woots //  ';
-	if (mehs === 1) var mm = ' meh // '; else var mm = ' mehs //  ';
-	if (curates === 1) var cc = ' curate // '; else var cc = ' curates // ';
-	var scoreStr = ' Status Music : ' + woots + ww + mehs + mm + curates + cc;
+	if (woots === 1) var ww = ' woot :+1: '; else var ww = ' woots :+1: ';
+	if (mehs === 1) var mm = ' meh :-1: '; else var mm = ' mehs :-1: ';
+	if (curates === 1) var cc = ' curate :green_heart: '; else var cc = ' curates :green_heart: ';
+	var scoreStr = ' Status Music : ' + Like + ww + Deslike + mm + Curates + cc;
 	API.sendChat('/em: ' + songStr + scoreStr);
 	song = API.getMedia().author + ' - ' + API.getMedia().title;
 }
