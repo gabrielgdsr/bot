@@ -179,7 +179,7 @@ TFLEnhancedModel = require('app/base/Class').extend({
             + '#current-dj-value {color:#66FFFF;}'
             + '.chat-title {font-family: "Faster One", cursive;}'
             + '#button-dj-play.button-dj {background-image: url("http://plug.dj/_/static/images/pt/ButtonDJWaitListJoin.7d23a08.png");}'
-            + '#button-dj-quit.button-dj {background-image: url("http://plug.dj/_/static/images/en/ButtonDJWaitListLeave.340838e.png");}'
+            + '#button-dj-quit.button-dj {background-image: url("http://i.imgur.com/RVDnOur.gif");}'
             + '#button-dj-waitlist-join.button-dj {background-image: url("http://i.imgur.com/UXxVIfm.png");}'
             + '#button-dj-waitlist-leave.button-dj {background-image: url("http://i.imgur.com/rZRTSu4.png");}'
             + '#button-dj-waitlist-view {background-image: url("http://plug.dj/_/static/images/pt/ButtonDJWaitListView.893548b.png");}'
