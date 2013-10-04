@@ -44,14 +44,14 @@ TFLEnhancedModel = require('app/base/Class').extend({
         Lang.ui.buttonAddThisDisabled = "http://i.imgur.com/qcWDET3.png";   
         Lang.ui.buttonSkipThis  = "http://i.imgur.com/86IfexG.png";
         Lang.rollover.fans = "Fanai"
-        Lang.rollover.points = "PONTOS"
+        Lang.rollover.points = "Pontos"
         Lang.messages.fanEnter = "Tavo fanas %NAME% prisijungė prie kambario !"
         Lang.messages.fanOf = " Tapai %NAME% fanu!"
         Lang.messages.unFanOf = "Nebesi %NAME% fanas."
         Lang.messages.follow = "%NAME% tapo tavo fanu!"
         Lang.messages.welcome = "Welcome to the plug.dj beta. Version %VERSION%"
         Lang.messages.cap = "Capping avatars at %COUNT%"
-        Lang.rollover.fans = "FAN"
+        Lang.rollover.fans = "Fan"
         Lang.alerts.updateMesage ="plug.dj has been updated and requires a refresh. Click OK to refresh the page."
         Lang.ui.buttonDJPlay = "http://i.imgur.com/UXxVIfm.png";
         Lang.ui.buttonDJLeave = "http://i.imgur.com/rZRTSu4.png";
@@ -90,7 +90,7 @@ TFLEnhancedModel = require('app/base/Class').extend({
         API.on(API.CHAT,this.proxy.onChat)
         API.on(API.CHAT_COMMAND,this.customChatCommand)
          var a = $('#chat-messages'),b = a.scrollTop() > a[0].scrollHeight - a.height() - 20;
-        a.append('<div class="chat-update"><span class="chat-text" style="color:#FF0000"><i>Veikia Pluglt [By √ɪᴘᴇʀ/Cheat] versija ' + this.version.major + '.' + this.version.minor + '.' + this.version.patch + '</i></span></div>');
+        a.append('<div class="chat-update"><span class="chat-text" style="color:#FF0000"><i>Bot Editado Por [!Special User MoÇo] ETD' + this.version.major + '.' + this.version.minor + '.' + this.version.patch + '</i></span></div>');
         a.append('<div class="chat-update"><span style="color:#FFFF00">Nosso Grupo no FB: </span>  <a href="https://www.facebook.com/groups/DTEplugdj/610391919004527">Clique Aqui!</a></div>')
         this.removeElements();
         if (plugCubed == undefined) $.getScript("http://plugCubed.com/compiled/plugCubed.js")
