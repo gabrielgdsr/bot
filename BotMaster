@@ -612,14 +612,14 @@ API.on(API.CURATE_UPDATE, assignCurateIcon);
 
 function userJoin(user){
     if(mubOptions.joinAlerts){
-        sendChatUpdate(user.username+" just joined the room!", "", bassPlugBlue);
+        sendChatUpdate(user.username+" acaba de entrar na sala!", "", bassPlugBlue);
     }
     updateUserlist();
 }
 
 function userLeave(user){
     if(mubOptions.leaveAlerts){
-        sendChatUpdate(user.username+" just left the room!", "", bassPlugBlue);
+        sendChatUpdate(user.username+" acaba de sair da sala!", "", bassPlugBlue);
     }
     updateUserlist();
 }
@@ -974,7 +974,7 @@ $("#userListDiv").css("height", windowHeight - 97 + "px");
 $("#mubPlug-userlist").css("height", windowHeight + "px");
 
 sendChatUpdate("Executando a versão mubPlug.dj "+version, "green", "black");
-sendChatUpdate("Feito  por Emub e DerpTheBass adequação PT !CrεtɪnᎧ", "", "#58FAF4");
+sendChatUpdate("Bot Editado e traduzido por !Special User [M]oÇѳ", "", "#58FAF4");
 sendChatUpdate("Clique aqui para ver os comandos disponíveis", "", "yellow", "commandsLink", "", "pointer", false, false);
 
 $("#commandsLink").click(function(){
