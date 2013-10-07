@@ -125,7 +125,7 @@ function initialize(){
     var halloSelect          = $('<select>');
     halloSelect.attr("id", "halloSelect");
 
-    var halloOption1  = $('<option>'); halloOption1.html("Male vampire").attr("value", "1");
+    var halloOption1  = $('<option>'); halloOption1.html("Vampiro masculino").attr("value", "1");
     var halloOption2  = $('<option>'); halloOption2.html("Vampire girl").attr("value", "2");
     var halloOption3  = $('<option>'); halloOption3.html("Frankensteins monster").attr("value", "3");
     var halloOption4  = $('<option>'); halloOption4.html("Vampire lady").attr("value", "4");
