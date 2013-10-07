@@ -126,18 +126,18 @@ function initialize(){
     halloSelect.attr("id", "halloSelect");
 
     var halloOption1  = $('<option>'); halloOption1.html("Vampiro masculino").attr("value", "1");
-    var halloOption2  = $('<option>'); halloOption2.html("Vampire girl").attr("value", "2");
-    var halloOption3  = $('<option>'); halloOption3.html("Frankensteins monster").attr("value", "3");
-    var halloOption4  = $('<option>'); halloOption4.html("Vampire lady").attr("value", "4");
-    var halloOption5  = $('<option>'); halloOption5.html("Male skeleton").attr("value", "5");
-    var halloOption6  = $('<option>'); halloOption6.html("Female skeleton").attr("value", "6");
-    var halloOption7  = $('<option>'); halloOption7.html("Gray mummy").attr("value", "7");
-    var halloOption8  = $('<option>'); halloOption8.html("Purple mummy").attr("value", "8");
-    var halloOption9  = $('<option>'); halloOption9.html("Ghost").attr("value", "9");
-    var halloOption10 = $('<option>'); halloOption10.html("Male wolf").attr("value", "10");
-    var halloOption11 = $('<option>'); halloOption11.html("Pumpkin monster").attr("value", "11");
-    var halloOption12 = $('<option>'); halloOption12.html("Female wolf").attr("value", "12");
-    var halloOption13 = $('<option>'); halloOption13.html("Disco zombie").attr("value", "13");
+    var halloOption2  = $('<option>'); halloOption2.html("Menina do vampiro").attr("value", "2");
+    var halloOption3  = $('<option>'); halloOption3.html("Frankensteins monstro").attr("value", "3");
+    var halloOption4  = $('<option>'); halloOption4.html("Senhora vampira").attr("value", "4");
+    var halloOption5  = $('<option>'); halloOption5.html("Esqueleto masculino").attr("value", "5");
+    var halloOption6  = $('<option>'); halloOption6.html("Esqueleto feminino").attr("value", "6");
+    var halloOption7  = $('<option>'); halloOption7.html("Múmia Cinza").attr("value", "7");
+    var halloOption8  = $('<option>'); halloOption8.html("Múmia roxa").attr("value", "8");
+    var halloOption9  = $('<option>'); halloOption9.html("Fantasma").attr("value", "9");
+    var halloOption10 = $('<option>'); halloOption10.html("Lobo macho").attr("value", "10");
+    var halloOption11 = $('<option>'); halloOption11.html("Monstro da abóbora").attr("value", "11");
+    var halloOption12 = $('<option>'); halloOption12.html("Logo femenino").attr("value", "12");
+    var halloOption13 = $('<option>'); halloOption13.html("Michael jackson zumbie").attr("value", "13");
 
     UI.attr("id", "mubPlugUI").css("left", UIPosition);
 
