@@ -815,7 +815,7 @@
 
     sourceCommand.prototype.functionality = function() {
       var msg;
-      msg = ' BOT criado por Backus e editado por brutos!Special User [M]oÇo para a Electro, Trap e Dubstep Brasil ';
+      msg = ' BOT criado por Backus e editado por Special User [M]oÇo para a ★Electro House BR★ ';
       return API.sendChat(msg);
     };
 
