@@ -73,7 +73,7 @@
       },{
         interval: 9,
         offset: 0,
-        msg: "/em: Entre no nosso grupo do facebook e fique por dentro de todas as nossas atualizações: https://www.facebook.com/groups/DTEplugdj/"
+        msg: "/em: Entre no nosso grupo do facebook e fique por dentro de todas as nossas atualizações: https://www.facebook.com/groups/250915865033190/"
       }
     ];
 
@@ -349,7 +349,7 @@
   })();
 
   pupOnline = function() {
-    return API.sendChat("/me: brutos versão ETDBR 100%. ON!");
+    return API.sendChat("/me: !Special User [M]oÇѳ versão ★Electro House BR★ 100%. ON!");
   };
 
   populateUserData = function() {
