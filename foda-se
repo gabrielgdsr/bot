@@ -349,7 +349,7 @@
   })();
 
   pupOnline = function() {
-    return API.sendChat("/me: !Special User [M]oÇѳ versão ★Electro House BR★ 100%. ON!");
+    return API.sendChat("/me Bot !Special User [M]oÇѳ versão ★Electro House BR★ 100%. ON!");
   };
 
   populateUserData = function() {
