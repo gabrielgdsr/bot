@@ -136,7 +136,7 @@ function initialize(){
     var halloOption9  = $('<option>'); halloOption9.html("Fantasma").attr("value", "9");
     var halloOption10 = $('<option>'); halloOption10.html("Lobo macho").attr("value", "10");
     var halloOption11 = $('<option>'); halloOption11.html("Monstro da abóbora").attr("value", "11");
-    var halloOption12 = $('<option>'); halloOption12.html("Logo femenino").attr("value", "12");
+    var halloOption12 = $('<option>'); halloOption12.html("Lobo femenino").attr("value", "12");
     var halloOption13 = $('<option>'); halloOption13.html("Michael jackson zumbie").attr("value", "13");
 
     UI.attr("id", "mubPlugUI").css("left", UIPosition);
