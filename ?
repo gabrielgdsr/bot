@@ -1,0 +1,15 @@
+}
+
+    downloadCommand.prototype.init = function() {
+      this.command = '!facebook';
+      this.parseType = 'exact';
+      return this.rankPrivelege = 'featured';
+    };
+
+    downloadCommand.prototype.functionality = function() {
+      var msg;
+      msg = "  Participe do grupo e fique por dentro de todas nossas atualizações! ";
+      msg += "https://www.facebook.com/groups/1378744439017099/ ";
+      msg += " :+1: ";
+      return API.sendChat(msg);
+    };
