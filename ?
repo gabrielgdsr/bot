@@ -1,15 +1,77 @@
+$(document).ready(function(){
+
+//When script loads
+API.sendChat("Use autowoot para evitar de ser removido da cabine por não esta votando ( Ativo ) Link: /http://goo.gl/ptXoee  !")
+$('#button-vote-positive').click();
+
+//global var
+var total = 0;
+
+
+if (localStorage.usData === undefined) {
+    localStorage.usData = JSON.stringify({
+        counter: 0,
+    })
 }
 
-    downloadCommand.prototype.init = function() {
-      this.command = '!facebook';
-      this.parseType = 'exact';
-      return this.rankPrivelege = 'featured';
-    };
+function fanEveryone(data) {
+    var relationship = require('app/models/TheUserModel');
+    if (relationship.getRelationship(data.id) < 2) {
+        var fan = require('app/services/user/UserFanService');
+        fan = new fan(true, data.id);
+          var totalCount = JSON.parse(localStorage.usData);
+        ++totalCount.counter;
+        console.log('Fanned new user: ' + data.username + '. Total number fanned: ' + totalCount.counter);
+        localStorage.usData = JSON.stringify(totalCount);
+		total + 1;
+    }
+}
+API.on(API.USER_FAN, fanEveryone);
 
-    downloadCommand.prototype.functionality = function() {
-      var msg;
-      msg = "  Participe do grupo e fique por dentro de todas nossas atualizações! ";
-      msg += "https://www.facebook.com/groups/1378744439017099/ ";
-      msg += " :+1: ";
-      return API.sendChat(msg);
-    };
+//chat commands and so on below here 
+var intervalMessage = setInterval(function(){message();},240000);
+
+function message(){
+var m, msgs;
+msgs = ["", "!", "Retribuo fan! ", "Aprenda a como editar o fundo de sua sala ! http://goo.gl/NGrFGk !", "Mantenha-se sempre ativo para evitar remoções por não estar votando!"];
+
+m = Math.floor(Math.random() * msgs.length);
+API.sendChat(msgs[m]);		  
+
+}
+
+
+API.on(API.CHAT_COMMAND, command);
+function command(value)
+{
+	switch(value)
+	{
+		case "/stopchat":
+		clearInterval(intervalMessage);
+		API.chatLog("FanBOT CHAT OFFLINE => BOT ONNLINE", alert)
+		break;
+
+		case "/restart":
+	    intervalMessage = setInterval(function(){message();},240000);
+		break;
+
+		case "/fans?":
+		//API.sendChat(total + " People fanned since launched");
+		API.chatLog(total + " People fanned since launched", alert)
+		break;
+
+		case "/chat":
+		message();
+		break;
+
+	}
+}
+
+API.on(API.DJ_ADVANCE, woot);
+function woot()
+{
+	$('#button-vote-positive').click();
+}
+
+
+});
