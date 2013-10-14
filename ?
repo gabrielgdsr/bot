@@ -33,7 +33,7 @@ var intervalMessage = setInterval(function(){message();},240000);
 
 function message(){
 var m, msgs;
-msgs = ["", "!", "Retribuo fan! ", "Aprenda a como editar o fundo de sua sala ! http://goo.gl/NGrFGk !", "Mantenha-se sempre ativo para evitar remoções por não estar votando!"];
+msgs = ["", "!", " ", "Aprenda a como editar o fundo de sua sala ! http://goo.gl/NGrFGk !", "Mantenha-se sempre ativo para evitar remoções por não estar votando!"];
 
 m = Math.floor(Math.random() * msgs.length);
 API.sendChat(msgs[m]);		  
@@ -48,7 +48,7 @@ function command(value)
 	{
 		case "/stopchat":
 		clearInterval(intervalMessage);
-		API.chatLog("FanBOT CHAT OFFLINE => BOT ONNLINE", alert)
+		API.chatLog("LinkBot offline => ", alert)
 		break;
 
 		case "/restart":
