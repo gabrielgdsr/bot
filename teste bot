@@ -349,7 +349,7 @@
   })();
 
   pupOnline = function() {
-    return API.sendChat("/me Bot !Special User [M]oÇѳ versão ★Electro House BR★ 100%. ON!");
+    return API.sendChat("/me Bot INFlNITY versão ★Electro House BR★ 100%. ON!");
   };
 
   populateUserData = function() {
@@ -683,7 +683,7 @@
     }
 
     whyWootCommand.prototype.init = function() {
-      this.command = '!Moço';
+      this.command = '!infinity';
       this.parseType = 'startsWith';
       return this.rankPrivelege = 'featured';
     };
@@ -815,7 +815,7 @@
 
     sourceCommand.prototype.functionality = function() {
       var msg;
-      msg = ' BOT criado por Backus e editado por Special User [M]oÇo para a ★Electro House BR★ ';
+      msg = ' BOT criado por Backus e editado por INFlNITY para a ★Electro House BR★ ';
       return API.sendChat(msg);
     };
 
@@ -839,7 +839,7 @@
 
     wootCommand.prototype.functionality = function() {
       var msg, nameIndex;
-      msg = "Use o auto woot para evitar remoção da cabine de DJ por não estar votando. http:/http://goo.gl/ptXoee ";
+      msg = "Use o auto woot para evitar remoção da cabine de DJ por não estar votando. http://goo.gl/ptXoee ";
       if ((nameIndex = this.msgData.message.indexOf('@')) !== -1) {
         return API.sendChat(this.msgData.message.substr(nameIndex) + ', ' + msg);
       } else {
