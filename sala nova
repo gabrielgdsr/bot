@@ -122,7 +122,7 @@ TFLEnhancedModel = require('app/base/Class').extend({
         plugCubed = undefined
     },
     initCSS: function() {
-        $('#room-wheel').css('background','url("http://plug.dj/_/static/images/custom/lounge/ricky-vaughn-gold-top-oct-7.cb6c217.png")');
+        $('#room-wheel').css('background','url("")');
         $('#room-wheel').css('background-repeat','no-repeat');
         $('#room-wheel').css('background-position','500px 275px');
         $('#meta-frame .frame-background').hide('.frame-background');
