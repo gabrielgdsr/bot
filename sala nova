@@ -169,7 +169,7 @@ TFLEnhancedModel = require('app/base/Class').extend({
             + '.chat-from-featureddj {padding-left:17px;}'
             + '.chat-message .chat-from-featureddj, .chat-mention .chat-from-featureddj {color:#E90E82 !important;}'
             + '.chat-message .chat-from-bouncer, .chat-mention .chat-from-bouncer {color:#E90E82 !important;}'
-            + '.chat-message .chat-from-manager, .chat-mention .chat-from-manager {color:#E90E82 !important;}'
+            + '.chat-message .chat-from-manager, .chat-mention .chat-from-manager {color:#00EEEE !important;}'
             + '.chat-message .chat-from, .chat-mention .chat-from{background: url("http://i.imgur.com/bJXq2aX.png") no-repeat;}'
             + '.chat-message .chat-from, .chat-mention .chat-from {padding-left:17px;}'
             + '.chat-from-you {background: url("http://i.imgur.com/bJXq2aX.png") no-repeat;}'
