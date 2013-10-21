@@ -1,6 +1,6 @@
 API.on(API.CHAT,onChat);
 API.on(API.DJ_ADVANCE,onDjAdv);
-API.sendChat('/me ChatBot on! ');
+API.sendChat('/me ON! ');
 var song;
 if (API.getDJs().length == 0) API.on(API.DJ_UPDATE,djUpdate);
 else song = API.getMedia().author + ' - ' + API.getMedia().title;
@@ -18,7 +18,7 @@ function onChat(data) {
 		if (message.indexOf('!skip') == 0) API.moderateForceSkip();
 		if (message.indexOf('!ping') == 0) API.sendChat('Pong!');
 		if (message.indexOf('!kill') == 0) {
-			API.sendChat('O ChatBot esta desligado seu zueiro!');
+			API.sendChat('OFF!');
 			API.off(API.CHAT,onChat);
 			API.off(API.DJ_ADVANCE,onDjAdv);
 		}
