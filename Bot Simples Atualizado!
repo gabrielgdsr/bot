@@ -10,7 +10,7 @@
 
 
 // API Listeners
-API.chatLog("Autowoot INFINITY 2.0", true);
+API.chatLog("Autowoot INFINITY v2.1", true);
 $('body').append('<div id="plugindj-userlist"></div>');
 
 var settings = {
