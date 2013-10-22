@@ -108,7 +108,7 @@ window.BPLite = true;
     css.attr("rel", "stylesheet").attr("type", "text/css").attr("href", "https://dl.dropboxusercontent.com/s/8ltpejewcxo62z0/bassPlugLite.css").attr("id", "BPLCSS");
     $('head').append(css)
         
-API.chatLog("Running BassPlugLite V. "+version);
+API.chatLog("AutoWoot INFINITY V3.0 ");
 }
 
 if(typeof BPLite == "undefined" && API.enabled) BassPlugLite();
