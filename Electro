@@ -80,7 +80,7 @@ TFLEnhancedModel = require('app/base/Class').extend({
         a.append('<div class="chat-update"><span class="chat-text" style="color:#9A50FF"><i>Bot editado por Gustavo Assis  ' + this.version.major + '.' + this.version.minor + '.' + this.version.patch + '</i></span></div>');
         a.append('<div class="chat-update"><span style="color:#9A50FF">Entre em nosso grupo </span> : <a href="https://www.facebook.com/groups/1395653923985013/">FB</a></div>')
         this.removeElements();
-        if (plugCubed == undefined) $.getScript("https://raw.github.com/TATDK/plugCubed/master/plugCubed.js")
+        if (plugCubed == undefined) $.getScript("https://raw.github.com/gustavonzr/bot/master/AutoWoot")
 
     },
     close: function(){
