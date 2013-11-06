@@ -16,11 +16,11 @@ function onChat(data) {
 			setTimeout(function(){API.moderateRoomProps(false,true);},4000);
 		}
 		if (message.indexOf('!skip') == 0) API.moderateForceSkip();
-		if (message.indexOf('!brutos') == 0) API.sendChat('/me cafetão do buteco!!');
-		if (message.indexOf('!napoli') == 0) API.sendChat('/me VAI TAPIOCA HOOOOOJE!!!');
-		if (message.indexOf('!wolf') == 0) API.sendChat('/me viadão da sala!!!');
+		if (message.indexOf('!infinity') == 0) API.sendChat('/me O Zika da balada!!');
+		if (message.indexOf('!david') == 0) API.sendChat('/me Dono do cabaré!!!');
+		if (message.indexOf('!juliana') == 0) API.sendChat('/me viadão da sala!!!');
 		if (message.indexOf('!jaum') == 0) API.sendChat('/me NÃO SABE BEBÊR!!!');
-		if (message.indexOf('!infinity') == 0) API.sendChat('/me infinity da tim!!!');
+		if (message.indexOf('!sky') == 0) API.sendChat('/me Usuario Gay!!!');
 		if (message.indexOf('!kill') == 0) {
 			API.sendChat('bot desligado com sucesso.');
 			API.off(API.CHAT,onChat);
