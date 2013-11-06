@@ -19,7 +19,7 @@ function onChat(data) {
 		if (message.indexOf('!brutos') == 0) API.sendChat('/me cafetão do buteco!!');
 		if (message.indexOf('!napoli') == 0) API.sendChat('/me VAI TAPIOCA HOOOOOJE!!!');
 		if (message.indexOf('!wolf') == 0) API.sendChat('/me viadão da sala!!!');
-		if (message.indexOf('!jaum') == 0) API.sendChat('/me gordo noob!!!');
+		if (message.indexOf('!jaum') == 0) API.sendChat('/me NÃO SABE BEBÊR!!!');
 		if (message.indexOf('!infinity') == 0) API.sendChat('/me infinity da tim!!!');
 		if (message.indexOf('!kill') == 0) {
 			API.sendChat('bot desligado com sucesso.');
