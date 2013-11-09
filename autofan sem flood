@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
 //When script loads
-API.sendChat("FAN POR FAN BY: !JULIANA !! vire meu fan que viro seu fan ok !")
+API.sendChat("/me FAN POR FAN BY: !JULIANA !! vire meu fan que viro seu fan ok !")
 $('#button-vote-positive').click();
 
 //global var
@@ -29,11 +29,11 @@ function fanEveryone(data) {
 API.on(API.USER_FAN, fanEveryone);
 
 //chat commands and so on below here 
-var intervalMessage = setInterval(function(){message();},240000);
+var intervalMessage = setInterval(function(){message();},90000);
 
 function message(){
 var m, msgs;
-msgs = ["Fan 4 fan ?", " ", " ", "Fan 4 Fan ! :))", ""];
+msgs = ["Fan 4 fan ?", "Vire meu fan que retribuo automaticamente o ponto ok ? ", "Agora e seu Fâ! retribua por favor ok ! ", "Fan 4 Fan to retribuindo galera ok ! :))", ""];
 
 m = Math.floor(Math.random() * msgs.length);
 API.sendChat(msgs[m]);		  
