@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
 //When script loads
-API.sendChat(".")
+API.sendChat("FAN POR FAN BY: !JULIANA !! vire meu fan que viro seu fan ok !")
 $('#button-vote-positive').click();
 
 //global var
